@@ -42,7 +42,7 @@ public class ChairListener implements Listener {
     public void onChairInteract(PlayerInteractEvent event) {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK || event.getPlayer().isSneaking() || event.getPlayer().isInsideVehicle()
                 || !(event.getClickedBlock().getBlockData() instanceof Stairs stairs) || !event.getClickedBlock().getLocation().add(0, 1, 0).getBlock().isEmpty()
-                || stairs.getHalf() == Half.TOP)
+                || stairs.getHalf() == Half.TOP || event.getItem() != null)
             return;
         LivingEntity ast = null;
         if (!chairs.containsKey(event.getClickedBlock())) {
@@ -71,8 +71,8 @@ public class ChairListener implements Listener {
         chairs.remove(location.subtract(.5d, .25d, .5d).getBlock());
         var oldPlayerLocation = entryOptional.get().oldPlayerLoc();
         if(oldPlayerLocation.getBlock().isEmpty() && !oldPlayerLocation.add(0, -1, 0).getBlock().isPassable() &&
-            oldPlayerLocation.add(0, 1, 0).getBlock().isEmpty() && !entryOptional.get().hasMoved().get()) {
-                player.teleport(oldPlayerLocation);
+                oldPlayerLocation.add(0, 1, 0).getBlock().isEmpty() && !entryOptional.get().hasMoved().get()) {
+            player.teleport(oldPlayerLocation);
         } else {
             player.teleport(player.getLocation().add(0, 1, 0).setDirection(player.getEyeLocation().getDirection()));
         }
