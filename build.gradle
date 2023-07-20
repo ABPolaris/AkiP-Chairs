@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'cc.54df'
-version '1.3-preview1'
+version '1.3-preview2'
 String mcVersion = '1.19.3'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)

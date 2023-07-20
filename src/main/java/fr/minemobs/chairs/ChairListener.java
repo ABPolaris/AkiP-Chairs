@@ -60,6 +60,7 @@ public class ChairListener implements Listener {
         } else ast = chairs.get(event.getClickedBlock()).stair();
         if (!ast.getPassengers().isEmpty()) return;
         ast.addPassenger(event.getPlayer());
+        event.getPlayer().updateInventory();
     }
 
     @EventHandler
